@@ -8,14 +8,17 @@ def orders(request):
     orders = Order.objects.all()
 
     # delivery = orders.filter(delivery='Delivery').count()
-    jollof = Order.objects.filter(food=3)
-    context = {'customers':customers, 'orders':orders, 'jollof':jollof}
+   
+    context = {'customers':customers, 'orders':orders}
     return render(request, 'orders.html', context)
 
 
 def customers(request, name):
     customer = Customer.objects.get(name=name)
-    
+
     orders = customer.order_set.all()
-    # total = 
+    total = sum([i.food.price for i in orders])
+
+    # total = sum(all_prices)
+    context = {'orders':orders, 'total':total}
     return render(request, 'customers.html', context)
