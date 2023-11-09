@@ -39,7 +39,6 @@ class Order(models.Model):
         ('Pick up', 'Pick up'),
         ('Delivery', 'Delivery')
         )
-    
     customer_name = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     food = models.ForeignKey(Food, null=True, on_delete=models.SET_NULL)
     location = models.CharField(max_length=150, null=True, choices=locs)

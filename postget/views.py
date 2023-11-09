@@ -26,7 +26,13 @@ def customers(request, name):
 
 def foods(request):
     all_foods = Food.objects.all()
-    num_of_orders = Food.objects.all()
+    # food_ordered = Food.order_set.all()
+    num_of_orders = {}
 
+    for num in Food.order_set:
+        if num.name in num_of_orders:
+            num_of_orders[num.name] += 1
+        else:
+            num_of_orders[num.name] == 1
     context = {'foods':all_foods, 'orders':num_of_orders}
     return render(request, 'foods.html', context)
