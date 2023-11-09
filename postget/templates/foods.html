@@ -1,0 +1,18 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Content</th>
+        <th>Price</th>
+        <th>Orders</th>
+    </tr>
+
+    {% for food in foods%}
+    <tr>
+        <td>{{food.name}}</td>
+        <td>{{food.description}}</td>
+        <td>{{food.price}}</td>
+        <td>{{orders.order}}</td>
+        <td></td>
+    </tr>
+    {% endfor %}
+</table>

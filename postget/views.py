@@ -22,3 +22,11 @@ def customers(request, name):
     # total = sum(all_prices)
     context = {'orders':orders, 'total':total}
     return render(request, 'customers.html', context)
+
+
+def foods(request):
+    all_foods = Food.objects.all()
+    num_of_orders = Food.objects.all()
+
+    context = {'foods':all_foods, 'orders':num_of_orders}
+    return render(request, 'foods.html', context)
