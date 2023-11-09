@@ -3,20 +3,19 @@ from .models import *
 from django.db.models import Q
 
 def orders(request):
-    # jollof = []
-    # for jollof_orders in Order.objects.all():
-    #     if 'ollof'.casefold() in jollof_orders.food.name:
-    #         jollof.append(jollof_orders)
-    
-    # for i in jollof:
-    #     context = {'i':i}
+    customers = Customer.objects.all()
 
-    orders = Order.objects.first()
-    personName = orders.customer_name.name
-    personFood = orders.food.name
+    orders = Order.objects.all()
 
-    customer = Customer.objects.first()
-    ordered_items = customer.order_set.all()
-
-    context = {'personFood':personFood, 'personName':personName, 'ordered_items':ordered_items}
+    # delivery = orders.filter(delivery='Delivery').count()
+    jollof = Order.objects.filter(food=3)
+    context = {'customers':customers, 'orders':orders, 'jollof':jollof}
     return render(request, 'orders.html', context)
+
+
+def customers(request, name):
+    customer = Customer.objects.get(name=name)
+    
+    orders = customer.order_set.all()
+    # total = 
+    return render(request, 'customers.html', context)

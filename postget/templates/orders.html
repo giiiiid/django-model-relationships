@@ -1,10 +1,26 @@
-<h4>These are the orders for today...</h4>
-<p>Jollof Rice</p>
-{{personName}} - {{personFood}}
-
-{% for order in ordered_items%}
-{{order.food}}<br>
-
+{% for customer in customers %}
+    <a href="{% url 'customers' customer.name%}">
+        {{customer.name}}<br>
+    </a>
 {% endfor %}
-<p>Fried Rice</p>
+<br><br>
+<table>
+    <tr>
+        <th>Customer</th>
+        <th>Food</th>
+        <th>Delivery type</th>
+    </tr>
+
+    {% for order in orders %}
+    <tr>
+        <td>{{order.customer_name}}</td>
+        <td>{{order.food}}</td>
+        <td>{{order.delivery}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br><br>
+Jollof = {{jollof}}
+<br>
+Fried Rice = 
 
