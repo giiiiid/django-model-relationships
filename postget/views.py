@@ -9,6 +9,8 @@ from .forms import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+import requests
+import json
 
 def orders(request):
     customers = Customer.objects.all()
@@ -16,15 +18,26 @@ def orders(request):
     
     num_of_delivery = Order.objects.filter(delivery='Delivery')
     num_of_pickups = Order.objects.filter(delivery='Pick up')
-    
     delivery_foods = [i.food.name for i in num_of_delivery]
     pickup_foods = [i.food.name for i in num_of_pickups]
     
+    orders_api_url = 'http://127.0.0.1:8000/postget/api'
+    response = requests.get(orders_api_url).json()
+    
+    for i in response:
+        json_data = {
+            'customer':str(i['customer_name']), 'food':str(i['food']),
+            'delivery_type':str(i['delivery'])
+        }
+    for i in response:
+        print(i['delivery'])
+    # for i in json_data:
+    #     print(i)
 
     context = {'customers':customers, 'orders':orders,
                 'delivery':num_of_delivery, 'pickups':num_of_pickups,
                 'delivery_foods':delivery_foods, 'pickup_foods':pickup_foods
-    }
+            }
     
     return render(request, 'orders.html', context)
 
