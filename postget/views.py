@@ -1,6 +1,14 @@
 from django.shortcuts import render, HttpResponse
-from .models import *
+from django.shortcuts import redirect, get_object_or_404
+from django.http import JsonResponse
+from django.urls import reverse
 from django.db.models import Q
+from .serializers import *
+from .models import *
+from .forms import *
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 def orders(request):
     customers = Customer.objects.all()
@@ -23,12 +31,11 @@ def orders(request):
 
 def customers(request, name):
     customer = Customer.objects.get(name=name)
-
     orders = customer.order_set.all()
     total = sum([i.food.price for i in orders])
 
     # total = sum(all_prices)
-    context = {'orders':orders, 'total':total}
+    context = {'orders':orders, 'total':total, 'customer':customer}
     return render(request, 'customers.html', context)
 
 
@@ -42,9 +49,30 @@ def foods(request):
     #         num_of_orders[num.name] += 1
     #     else:
     #         num_of_orders[num.name] == 1
-
     specific_food = Food.objects.get(name__icontains='Jollof Normal')
     orders = specific_food.order_set.all()
 
     context = {'foods':all_foods, 'orders':orders}
     return render(request, 'foods.html', context)
+
+
+def create_order(request, name):
+    customer = Customer.objects.get(name=name)
+    forms = OrderForms(initial={'customer_name':customer})
+
+    instance_model = customer
+    if request.method == 'POST':
+        forms = OrderForms(request.POST)
+        if forms.is_valid:
+            forms.save()
+            # return redirect(reverse('customers', kwargs={'instance':str(customer)}))
+            # return redirect('/customer')
+    context = {'forms':forms, 'customer':customer}
+    return render(request, 'place_order.html', context)
+
+
+@api_view(['GET','POST'])
+def api(request):
+    orders = Order.objects.all()
+    serializer = OrderSerializer(orders, many=True)
+    return JsonResponse(serializer.data, safe=False)

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chatapp', 
     'postget', 
-    'RealChatApp'
+    'RealChatApp',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

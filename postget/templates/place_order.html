@@ -1,0 +1,7 @@
+<form method="post"> {% csrf_token %}
+    {{forms}}
+    <input type="submit" value="Submit">
+</form>
+<a href="{% url 'customers' customer %}">
+    <p>Dashboard</p>
+</a>

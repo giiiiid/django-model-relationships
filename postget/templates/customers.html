@@ -16,3 +16,8 @@
 </table>
 <p>Number of orders = {{orders.count}}</p>
 <p>Total = {{total}}</p>
+
+
+<a href="{% url 'create_order' customer %}">
+    <p>Place a new order</p>
+</a>
