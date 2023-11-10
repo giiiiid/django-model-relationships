@@ -20,6 +20,11 @@
     {% endfor %}
 </table>
 <br>
+<p>Total orders: {{orders.count}}</p>
+
+<p>Number of delivery: {{delivery.count}} || {{delivery_foods}}</p>
+
+<p>Number of pickups: {{pickups.count}} || {{pickup_foods}}</p>
 <p>
     <a href="{% url 'foods' %}">See our Menu here</a>
 </p>
