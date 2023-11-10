@@ -24,13 +24,16 @@ def orders(request):
     orders_api_url = 'http://127.0.0.1:8000/postget/api'
     response = requests.get(orders_api_url).json()
     
+    # for i in response:
+    #     json_data = {
+    #         'customer':str(i['customer_name']), 'food':str(i['food']),
+    #         'delivery_type':str(i['delivery'])
+    #     }
     for i in response:
-        json_data = {
-            'customer':str(i['customer_name']), 'food':str(i['food']),
-            'delivery_type':str(i['delivery'])
-        }
-    for i in response:
-        print(i['delivery'])
+        del(i['id'], i['invoice'])
+    
+    with open('dumped.json', 'w') as f:
+        json.dump(response, f, indent=2)
     # for i in json_data:
     #     print(i)
 

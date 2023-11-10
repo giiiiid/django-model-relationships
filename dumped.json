@@ -1,0 +1,32 @@
+[
+  {
+    "location": "North",
+    "delivery": "Delivery",
+    "customer_name": 1,
+    "food": 6
+  },
+  {
+    "location": "Santasi",
+    "delivery": "Delivery",
+    "customer_name": 2,
+    "food": 5
+  },
+  {
+    "location": "Abrepo",
+    "delivery": "Pick up",
+    "customer_name": 3,
+    "food": 4
+  },
+  {
+    "location": "South",
+    "delivery": "Delivery",
+    "customer_name": 4,
+    "food": 6
+  },
+  {
+    "location": "Bantama",
+    "delivery": "Pick up",
+    "customer_name": 5,
+    "food": 3
+  }
+]
