@@ -42,7 +42,6 @@ def customers(request, name):
     orders = customer.order_set.all()
     total = sum([i.food.price for i in orders])
 
-    # total = sum(all_prices)
     context = {'orders':orders, 'total':total, 'customer':customer}
     return render(request, 'customers.html', context)
 
