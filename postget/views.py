@@ -29,13 +29,10 @@ def orders(request):
     #         'customer':str(i['customer_name']), 'food':str(i['food']),
     #         'delivery_type':str(i['delivery'])
     #     }
-    for i in response:
-        del(i['id'], i['invoice'])
     
-    with open('dumped.json', 'w') as f:
+    with open('orders.json', 'w') as f:
         json.dump(response, f, indent=2)
-    # for i in json_data:
-    #     print(i)
+
 
     context = {'customers':customers, 'orders':orders,
                 'delivery':num_of_delivery, 'pickups':num_of_pickups,
