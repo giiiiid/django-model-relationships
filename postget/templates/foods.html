@@ -6,12 +6,12 @@
         <th>Orders</th>
     </tr>
 
-    {% for food in foods.all %}
+    {% for food in foods %}
     <tr>
         <td>{{food.name}}</td>
         <td>{{food.description}}</td>
         <td>{{food.price}}</td>
-        <td>{{orders.count}}</td>
+        <td>{{num_of_orders}}</td>
         <td></td>
     </tr>
     {% endfor %}

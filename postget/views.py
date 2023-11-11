@@ -24,11 +24,6 @@ def orders(request):
     orders_api_url = 'http://127.0.0.1:8000/postget/api'
     response = requests.get(orders_api_url).json()
     
-    # for i in response:
-    #     json_data = {
-    #         'customer':str(i['customer_name']), 'food':str(i['food']),
-    #         'delivery_type':str(i['delivery'])
-    #     }
     
     with open('orders.json', 'w') as f:
         json.dump(response, f, indent=2)
@@ -38,7 +33,7 @@ def orders(request):
                 'delivery':num_of_delivery, 'pickups':num_of_pickups,
                 'delivery_foods':delivery_foods, 'pickup_foods':pickup_foods
             }
-    
+            
     return render(request, 'orders.html', context)
 
 
@@ -54,18 +49,13 @@ def customers(request, name):
 
 def foods(request):
     all_foods = Food.objects.all()
-    # num_of_orders = Food.order_set.all()
-    # num_of_orders = {}
+    
+    num_of_orders = int()
+    # for i in all_foods:
+    #     num_of_orders ==  i.order_set.all().count()
+    
 
-    # for num in Food.order_set:
-    #     if num.name in num_of_orders:
-    #         num_of_orders[num.name] += 1
-    #     else:
-    #         num_of_orders[num.name] == 1
-    specific_food = Food.objects.get(name__icontains='Jollof Normal')
-    orders = specific_food.order_set.all()
-
-    context = {'foods':all_foods, 'orders':orders}
+    context = {'foods':all_foods, 'orders':orders, 'num_of_orders':num_of_orders}
     return render(request, 'foods.html', context)
 
 

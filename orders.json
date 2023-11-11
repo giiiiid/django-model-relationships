@@ -38,5 +38,13 @@
     "delivery": "Pick up",
     "customer_name": 5,
     "food": 3
+  },
+  {
+    "id": 25,
+    "location": "Abrepo",
+    "invoice": "#6",
+    "delivery": "Pick up",
+    "customer_name": 5,
+    "food": 1
   }
 ]
