@@ -33,7 +33,7 @@ def orders(request):
                 'delivery':num_of_delivery, 'pickups':num_of_pickups,
                 'delivery_foods':delivery_foods, 'pickup_foods':pickup_foods
             }
-            
+
     return render(request, 'orders.html', context)
 
 
@@ -49,13 +49,12 @@ def customers(request, name):
 
 def foods(request):
     all_foods = Food.objects.all()
-    
-    num_of_orders = int()
-    # for i in all_foods:
-    #     num_of_orders ==  i.order_set.all().count()
-    
+    # getting the number of orders for a food in a menu
+    num_of_orders = [i.order_set.all().count() for i in all_foods]
+    for i,j in enumerate(num_of_orders):
+        print(j)
 
-    context = {'foods':all_foods, 'orders':orders, 'num_of_orders':num_of_orders}
+    context = {'foods':all_foods, 'orders':orders}
     return render(request, 'foods.html', context)
 
 

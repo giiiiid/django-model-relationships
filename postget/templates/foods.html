@@ -11,7 +11,8 @@
         <td>{{food.name}}</td>
         <td>{{food.description}}</td>
         <td>{{food.price}}</td>
-        <td>{{num_of_orders}}</td>
+        <td>{{food.order_set.all.count}}</td>
+        
         <td></td>
     </tr>
     {% endfor %}
