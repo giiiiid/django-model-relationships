@@ -38,9 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chatapp', 
     'postget', 
-    'RealChatApp',
     'rest_framework'
 ]
 

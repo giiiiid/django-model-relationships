@@ -25,8 +25,8 @@ def orders(request):
     response = requests.get(orders_api_url).json()
     
     
-    with open('orders.json', 'w') as f:
-        json.dump(response, f, indent=2)
+    # with open('orders.json', 'w') as f:
+    #     json.dump(response, f, indent=2)
 
 
     context = {'customers':customers, 'orders':orders,
