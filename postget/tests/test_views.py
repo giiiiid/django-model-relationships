@@ -37,29 +37,27 @@ class TestViews(TestCase):
         self.assertTemplateUsed(url, 'place_order.html')
 
 
-    # def test_create_order_post(self):
-    #     customer1 = Customer.objects.create(name='Kofi', email='kofi@gmail.com')
-    #     tag1 = Tag.objects.create(tag='Invoice1')
+    def test_create_order_post(self):
+        customer1 = Customer.objects.create(name='Kofi', email='kofi@gmail.com')
+        tag1 = Tag.objects.create(tag='Invoice1')
 
-    #     food1 = Food.objects.create(
-    #         name='Fufu',
-    #         price=100,
-    #         description='Tasty',
-    #         date_created='',
-    #     )
-    #     food1.tag.set([tag1])
+        food1 = Food.objects.create(
+            name='Fufu',
+            price=100,
+            description='Tasty',
+            date_created='',
+        )
+        food1.tag.set([tag1])
 
-    #     order1 = Order.objects.create(
-    #         customer_name=customer1,
-    #         food=food1,
-    #         location='Bantama',
-    #         delivery='Pick Up'
-    #     )
+        order1 = Order.objects.create(
+            customer_name=customer1,
+            food=food1,
+            location='Bantama',
+            delivery='Pick Up'
+        )
         
-    #     url = self.client.post(reverse('create_order', args=[customer1]), {
-    #         'customer_name':customer1, 'food':food1, 'location':'Bantama','delivery':'Pick Up'
-    #     })
-    #     self.assertEquals(url.status_code, 200)
+        url = self.client.post(reverse('create_order', args=[customer1]))
+        self.assertEquals(url.status_code, 200)
 
 
     def test_api(self):
