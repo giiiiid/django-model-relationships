@@ -6,13 +6,13 @@ class Customer(models.Model):
     email = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Tag(models.Model):
     tag = models.CharField(max_length=200, null=True)
     def __str__(self):
-        return self.tag
+        return str(self.tag)
 
 
 class Food(models.Model):
@@ -23,8 +23,11 @@ class Food(models.Model):
     tag = models.ManyToManyField(Tag)
 
     def __str__(self):
-        return self.name
-
+        return str(self.name)
+    
+    # def save(self, *args, **kwargs):
+    #     self.description = f'Contains {self.tag}'
+    #     super(Food, self).save(*args, **kwargs)
 
 class Order(models.Model):
     locs = (
@@ -46,4 +49,9 @@ class Order(models.Model):
     delivery = models.CharField(max_length=150, null=True, choices=category)
 
     def __str__(self):
-        return self.invoice
+        return str(self.invoice)
+    
+    # def save(self, *args, **kwargs):
+    #     self.invoice = 
+    
+    
