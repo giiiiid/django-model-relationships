@@ -3,13 +3,18 @@ from ..models import Order
 from rest_framework import response, status
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from django.core.paginator import Paginator
 
 class OrderAPI(APIView):
     serializer_class = OrderSerializer
 
     def get(self, request):
         queryset = Order.objects.all()
-        serializer = self.serializer_class(queryset, many=True)
+        
+        page_num = request.GET.get('page', 1)
+        paginator = Paginator(queryset,2)
+        print(paginator.per_page)
+        serializer = self.serializer_class(paginator.page(page_num), many=True)
         return response.Response(serializer.data, status=status.HTTP_200_OK)
     
     def post(self, request):

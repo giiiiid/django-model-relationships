@@ -49,7 +49,7 @@ class Order(models.Model):
     delivery = models.CharField(max_length=150, null=True, choices=category)
 
     def __str__(self):
-        return str(self.invoice)
+        return str(self.food)
     
     # def save(self, *args, **kwargs):
     #     self.invoice = 

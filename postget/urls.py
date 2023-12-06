@@ -8,5 +8,5 @@ urlpatterns=[
     path('customers/<str:name>', views.customers, name='customers'),
     path('foods', views.foods, name='foods'), 
     path('create_order/<str:name>', views.create_order, name='create_order'),
-    path('api/', include('postget.api.urls'))
+    path('order/', include('postget.api.urls'))
 ]
