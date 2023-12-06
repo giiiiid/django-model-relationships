@@ -4,7 +4,8 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.db.models import Q
 from .serializers import *
-from .models import *
+from .models import (Customer, Tag, 
+                    Food, Order)
 from .forms import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
