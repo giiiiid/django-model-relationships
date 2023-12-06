@@ -3,7 +3,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.http import JsonResponse
 from django.urls import reverse
 from django.db.models import Q
-from .serializers import *
+# from .serializers import *
 from .models import (Customer, Tag, 
                     Food, Order)
 from .forms import *
@@ -73,8 +73,8 @@ def create_order(request, name):
     return render(request, 'place_order.html', context)
 
 
-@api_view(['GET','POST'])
-def api(request):
-    orders = Order.objects.all()
-    serializer = OrderSerializer(orders, many=True)
-    return JsonResponse(serializer.data, safe=False)
+# @api_view(['GET','POST'])
+# def api(request):
+#     orders = Order.objects.all()
+#     serializer = OrderSerializer(orders, many=True)
+#     return JsonResponse(serializer.data, safe=False)
