@@ -8,6 +8,7 @@ from rest_framework import response, status, decorators
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
+from django.core.paginator import Paginator
 # Create your views here.
 
 # class CreateTodo(CreateAPIView):
@@ -64,11 +65,13 @@ class TodoAPI(APIView):
     def get(self, request):
         queryset = Todo.objects.all()
 
-        page_num = request.GET.get('page')
-        paginator = Paginator(queryset,3)
+        page_num = request.GET.get('page',2)
+        paginator = Paginator(queryset,2)
         
         serializer = self.serializer_class(paginator.page(page_num), many=True)
         return response.Response(serializer.data)
+    
+    
 
 class TodoDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = TodoSerializer
