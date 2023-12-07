@@ -65,7 +65,7 @@ class TodoAPI(APIView):
     def get(self, request):
         queryset = Todo.objects.all()
 
-        page_num = request.GET.get('page',2)
+        page_num = request.GET.get('page',1)
         paginator = Paginator(queryset,2)
         
         serializer = self.serializer_class(paginator.page(page_num), many=True)
@@ -76,9 +76,9 @@ class TodoAPI(APIView):
 class TodoDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = TodoSerializer
     permission_classes = [IsAuthenticated]
-    # lookup_field = "name"
+    lookup_field = 'id'
 
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         queryset = Todo.objects.filter(owner=self.request.user)
         return queryset
 

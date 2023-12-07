@@ -23,3 +23,13 @@ class OrderAPI(APIView):
             serializer.save()
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# errors because I am not using a user
+class UpdateOrderAPI(RetrieveUpdateDestroyAPIView):
+    serializer_class = OrderSerializer
+    lookup_field = ["id"]
+
+    def get_queryset(self):
+        queryset = Order.objects.filter("?")
+        return queryset
