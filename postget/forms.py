@@ -4,4 +4,5 @@ from .models import *
 class OrderForms(forms.ModelForm):
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = "__all__"
+        widgets = {"user":forms.HiddenInput()}
