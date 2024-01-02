@@ -5,4 +5,4 @@ class OrderForms(forms.ModelForm):
     class Meta:
         model = Order
         fields = "__all__"
-        widgets = {"user":forms.HiddenInput()}
+        widgets = {"customer_name":forms.HiddenInput()}
