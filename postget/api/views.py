@@ -26,10 +26,10 @@ class OrderAPI(APIView):
 
 
 # errors because I am not using a user
-class UpdateOrderAPI(RetrieveUpdateDestroyAPIView):
-    serializer_class = OrderSerializer
-    lookup_field = ["id"]
+# class UpdateOrderAPI(RetrieveUpdateDestroyAPIView):
+#     serializer_class = OrderSerializer
+#     lookup_field = ["id"]
 
-    def get_queryset(self):
-        queryset = Order.objects.filter("?")
-        return queryset
+#     def get_queryset(self):
+#         queryset = Order.objects.filter("?")
+#         return queryset
